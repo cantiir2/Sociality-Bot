@@ -8,7 +8,7 @@ exports.owner = () => {
 ║
 ║══════════════════════
 ║Nama : Mochamad Alifian
-║           Hedardi Kadarusman
+║       Hedardi Kadarusman
 ║
 ║Asal : Bekasi
 ║
@@ -24,6 +24,22 @@ exports.owner = () => {
 ║Hidup tidak
 ║semulus Paha ueno
 ║tidak secantik Itsuki
+║
+║══════════════════════
+║Nama : Hasan Ramadhan
+║       
+║
+║Asal : Jawir
+║
+║Umur : 18 tahun
+║
+║Golongan darah : -
+║
+║Punya cewek    : -
+║
+║Hobby         : -
+║
+║Moto hidup  : 
 ║
 ║
 ╰ஜ۩۞ Sociality BOT۞۩ஜ══`

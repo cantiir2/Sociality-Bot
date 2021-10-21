@@ -122,6 +122,7 @@ module.exports = sociality = async (sociality = new Client(), message) => {
         global.voterslistfile = 'poll_voters_Config_' + chat.id + '.json'
         const blockNumber = await sociality.getBlockedIds()
         const ownerNumber = config.ownerBot
+        const ownerNumber2 = config.ownerBot2
         const groupId = isGroupMsg ? chat.groupMetadata.id : ''
         const groupAdmins = isGroupMsg ? await sociality.getGroupAdmins(groupId) : ''
         const time = moment(t * 1000).format('DD/MM/YY HH:mm:ss')
@@ -1276,6 +1277,8 @@ break
             case prefix+'tktnowm':
                 if (!isRegistered) return await sociality.reply(from, ind.notRegistered(), id)
                 if (!isUrl(url) && !url.includes('tiktok.com')) return await sociality.reply(from, ind.wrongFormat(), id)
+                if (limit.isLimit(sender.id, _limit, limitCount, isPremium, isOwner)) return await sociality.reply(from, ind.limit(), id)
+                limit.addLimit(sender.id, _limit, isPremium, isOwner)
                 if (!isPremium) return await sociality.reply(from, ind.notPremium(), id)
                /* downloader.tikNoWm(url)
                     .then(async ({result})=> {
@@ -2581,7 +2584,7 @@ break
             case prefix+'owner':
             case prefix+'ownerbot':
                 if (!isRegistered) return await sociality.reply(from, ind.notRegistered(), id)
-                await sociality.sendContact(from, ownerNumber)
+                await sociality.sendContact(from, ownerNumber, ownerNumber2)
                 await sociality.reply(from, ind.owner(), id)
             break
             case prefix+'runtime': // BY HAFIZH
