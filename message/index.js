@@ -6150,13 +6150,13 @@ break
                 }
                 break
             case prefix+'setname':
-                if isOwner && isOwner2 return await sociality.reply(from, ind.ownerOnly(), id)
+                if (isOwner && isOwner2) return await sociality.reply(from, ind.ownerOnly(), id)
                 if (!q || q.length > 25) return await sociality.reply(from, ind.wrongFormat(), id)
                 await sociality.setMyName(q)
                 await sociality.reply(from, `Done!\n\nUsername changed to: ${q}`, id)
             break
             case prefix+'give':
-                if isOwner && isOwner2 return await sociality.reply(from, ind.ownerOnly(), id)
+                if (isOwner && isOwner2) return await sociality.reply(from, ind.ownerOnly(), id)
                 if (args.length !== 2) return await sociality.reply(from, ind.wrongFormat(), id)
                 if (mentionedJidList.length !== 0) {
                     for (let give of mentionedJidList) {
