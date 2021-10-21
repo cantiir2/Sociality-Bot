@@ -155,6 +155,7 @@ module.exports = sociality = async (sociality = new Client(), message) => {
         const arg = body.substring(body.indexOf(' ') + 1)
         const isBlocked = blockNumber.includes(sender.id)
         const isOwner = sender.id === ownerNumber
+        const isOwner2 = sender.id === ownerNumber2
         const isGroupAdmins = groupAdmins.includes(sender.id) || false
         const isBotGroupAdmins = groupAdmins.includes(botNumber) || false
         //const isBanned = _ban.includes(sender.id)
@@ -2584,7 +2585,7 @@ break
             case prefix+'owner':
             case prefix+'ownerbot':
                 if (!isRegistered) return await sociality.reply(from, ind.notRegistered(), id)
-                await sociality.sendContact(from, `${ownerNumber} | ${ownerNumber2}`)
+                await sociality.sendContact(from, [ownerNumber, ownerNumber2], id)
                 await sociality.reply(from, ind.owner(), id)
             break
             case prefix+'runtime': // BY HAFIZH
@@ -5784,7 +5785,7 @@ break
 
             // Owner command
             case'setprefix':
-                if (!isOwner) return await sociality.reply(from, ind.ownerOnly(), id)
+                if (isOwner && isOwner2) return await sociality.reply(from, ind.ownerOnly(), id)
                 if (args.length < 2) return reply(`Masukkan prefix\nOptions :\n=> multi\n=> nopref`)
                 if (q  === 'multi'){
                     multi = true
@@ -5801,7 +5802,7 @@ break
                 }
                 break
             case prefix+'bc':
-                if (!isOwner) return await sociality.reply(from, ind.ownerOnly(), id)
+                if (isOwner && isOwner2) return await sociality.reply(from, ind.ownerOnly(), id)
                 bctxt = body.slice(4)
                 txtbc = `*「 Sociality BOT BROADCAST 」*\n\n${bctxt}`
                 const semuagrup = await sociality.getAllChatIds();
@@ -5822,7 +5823,7 @@ break
                 }
                 break
             case prefix+'clearall':
-                if (!isOwner) return await sociality.reply(from, ind.ownerOnly(), id)
+                if (isOwner && isOwner2) return await sociality.reply(from, ind.ownerOnly(), id)
                 const allChats = await sociality.getAllChats()
                 for (let delChats of allChats) {
                     await sociality.deleteChat(delChats.id)
@@ -5830,7 +5831,7 @@ break
                 await sociality.reply(from, ind.doneOwner(), id)
             break
             case prefix+'leaveall':
-                if (!isOwner) return await sociality.reply(from, ind.ownerOnly(), id)
+                if (isOwner && isOwner2) return await sociality.reply(from, ind.ownerOnly(), id)
                 if (!q) return await sociality.reply(from, ind.emptyMess(), id)
                 const allGroup = await sociality.getAllGroups()
                 for (let gclist of allGroup) {
@@ -5842,12 +5843,12 @@ break
                 await sociality.reply(from, ind.doneOwner())
             break
             case prefix+'getses':
-                if (!isOwner) return await sociality.reply(from, ind.ownerOnly(), id)
+                if (isOwner && isOwner2) return await sociality.reply(from, ind.ownerOnly(), id)
                 const ses = await sociality.getSnapshot()
                 await sociality.sendFile(from, ses, 'session.png', ind.doneOwner())
             break
             case prefix+'ban':
-                if (!isOwner) return await sociality.reply(from, ind.ownerOnly(), id)
+                if (isOwner && isOwner2) return await sociality.reply(from, ind.ownerOnly(), id)
                 if (ar[0] === 'add') {
                     if (mentionedJidList.length !== 0) {
                         for (let benet of mentionedJidList) {
@@ -5980,7 +5981,7 @@ break
 
             case prefix+'eval':
             case prefix+'ev':
-                if (!isOwner) return await sociality.reply(from, ind.ownerOnly(), id)
+                if (isOwner && isOwner2) return await sociality.reply(from, ind.ownerOnly(), id)
                 if (!q) return await sociality.reply(from, ind.wrongFormat(), id)
                 try {
                     let evaled = await eval(q)
@@ -5993,7 +5994,7 @@ break
             break
             case prefix+'shutdown':
             case prefix+'sh':
-                if (!isOwner) return await sociality.reply(from, ind.ownerOnly(), id)
+                if (isOwner && isOwner2) return await sociality.reply(from, ind.ownerOnly(), id)
                 await sociality.sendText(from, 'Tolong jangan bunuh saya tuan~')
                     await sleep(5000)
                     await sociality.sendText(from, 'Aaaaaaaaaaaaaaaaa')
@@ -6003,7 +6004,7 @@ break
             break
             case prefix+'premi':
             case prefix+'premium':
-                if (!isOwner) return await sociality.reply(from, ind.ownerOnly(), id)
+                if (isOwner && isOwner2) return await sociality.reply(from, ind.ownerOnly(), id)
                 if (ar[0] === 'add') {
                     if (mentionedJidList.length !== 0) {
                         for (let benet of mentionedJidList) {
@@ -6033,13 +6034,13 @@ break
             case prefix+'setstatus':
             case prefix+'setstats':
             case prefix+'setstat':
-                if (!isOwner) return await sociality.reply(from, ind.ownerOnly(), id)
+                if (isOwner && isOwner2) return await sociality.reply(from, ind.ownerOnly(), id)
                 if (!q) return await sociality.reply(from, ind.emptyMess(), id)
                 await sociality.setMyStatus(q)
                 await sociality.reply(from, ind.doneOwner(), id)
             break
             case prefix+'exif':
-                if (!isOwner) return await sociality.reply(from, ind.ownerOnly(), id)
+                if (isOwner && isOwner2) return await sociality.reply(from, ind.ownerOnly(), id)
                 if (!q.includes('|')) return await sociality.reply(from, ind.wrongFormat(), id)
                 const namaPack = q.substring(0, q.indexOf('|') - 1)
                 const authorPack = q.substring(q.lastIndexOf('|') + 2)
@@ -6050,7 +6051,7 @@ break
                 if (!isRegistered) return await sociality.reply(from, ind.notRegistered(pushname), id)
                 if (!isGroupMsg) return await sociality.reply(from, ind.groupOnly(), id)
                // if (!isGroupAdmins) return await sociality.reply(from, ind.adminOnly(), id)
-                if (!isOwner) return await sociality.reply(from, ind.ownerOnly(), id)
+                if (isOwner && isOwner2) return await sociality.reply(from, ind.ownerOnly(), id)
                 if (ar[0] === 'enable') {
                     if (isMute) return await sociality.reply(from, ind.muteChatOnAlready(), id)
                     _mute.push(groupId)
@@ -6149,13 +6150,13 @@ break
                 }
                 break
             case prefix+'setname':
-                if (!isOwner) return await sociality.reply(from, ind.ownerOnly(), id)
+                if isOwner && isOwner2 return await sociality.reply(from, ind.ownerOnly(), id)
                 if (!q || q.length > 25) return await sociality.reply(from, ind.wrongFormat(), id)
                 await sociality.setMyName(q)
                 await sociality.reply(from, `Done!\n\nUsername changed to: ${q}`, id)
             break
             case prefix+'give':
-                if (!isOwner) return await sociality.reply(from, ind.ownerOnly(), id)
+                if isOwner && isOwner2 return await sociality.reply(from, ind.ownerOnly(), id)
                 if (args.length !== 2) return await sociality.reply(from, ind.wrongFormat(), id)
                 if (mentionedJidList.length !== 0) {
                     for (let give of mentionedJidList) {
@@ -6168,7 +6169,7 @@ break
                 }
             break
             case prefix+'gift':
-                if (!isOwner) return await sociality.reply(from, ind.ownerOnly(), id)
+                if (isOwner && isOwner2)return await sociality.reply(from, ind.ownerOnly(), id)
                 const nomerr = arg.split(' ')[0]
                 const jmla = arg.split(' ')[1]
                 if(!nomerr) return sociality.reply(from, `Masukkan nomor yang akan di gift, ${prefix}gift [ @tagmember Jumlah ]\n=> Contoh : ${prefix}gift @6285155139920 15`, id)
@@ -6211,7 +6212,7 @@ break
                 await sociality.sendFileFromUrl(from, `https://i.ibb.co/8K15p66/Donasi.jpg`, '', ind.sumbang(), id)
             break
             case prefix+'reset':
-                if (!isOwner) return await sociality.reply(from, ind.ownerOnly(), id)
+                if (isOwner && isOwner2) return await sociality.reply(from, ind.ownerOnly(), id)
                 const reset = []
                 _limit = reset
                 console.log('Resetting user\'s limit...')
@@ -6220,7 +6221,7 @@ break
                 console.log('Success!')
             break
            case prefix+'block':
-                if (!isOwner) return sociality.reply(from, 'Perintah ini hanya bisa di gunakan oleh Owner Sociality BOT!', id)
+                if (isOwner && isOwner2) return sociality.reply(from, 'Perintah ini hanya bisa di gunakan oleh Owner Sociality BOT!', id)
                 if(ar[0] === 'add'){
                     if (mentionedJidList.length !== 0) {
                     for (let i = 0; i < mentionedJidList.length; i++) {
