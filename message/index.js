@@ -2584,7 +2584,7 @@ break
             case prefix+'owner':
             case prefix+'ownerbot':
                 if (!isRegistered) return await sociality.reply(from, ind.notRegistered(), id)
-                await sociality.sendContact(from, ownerNumber, ownerNumber2)
+                await sociality.sendContact(from, `${ownerNumber} | ${ownerNumber2}`)
                 await sociality.reply(from, ind.owner(), id)
             break
             case prefix+'runtime': // BY HAFIZH
