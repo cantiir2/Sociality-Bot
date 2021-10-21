@@ -39,8 +39,8 @@
 # Installation
 ## 📝 Cloning this repo
 ```cmd
-> git clone https://github.com/SlavyanDesu/BocchiBot.git
-> cd BocchiBot
+> git clone https://github.com/cantiir2/Sociality-Bot/
+> cd Sociality-Bot
 ```
 
 ## ✍️ Editing the file
