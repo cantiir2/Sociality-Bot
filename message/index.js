@@ -371,7 +371,7 @@ module.exports = sociality = async (sociality = new Client(), message) => {
             role = 'Tuhan Animes'
         }
         // Leveling [BETA] by Slavyan
-        if (isGroupMsg && isRegistered && !level.isGained(sender.id) && !isBanned && isLevelingOn) {
+        if (isGroupMsg && isRegistered && !level.isGained(sender.id) && isLevelingOn) {
             try {
                 level.addCooldown(sender.id)
                 const currentLevel = level.getLevelingLevel(sender.id, _level)
