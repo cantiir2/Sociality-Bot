@@ -33,14 +33,14 @@ exports.owner = () => {
 ║
 ║Umur : 18 tahun
 ║
-║Golongan darah : -
+║Golongan darah : Ras Vampire
 ║
 ║Punya cewek    : -
 ║
-║Hobby         : -
+║Hobby         : Kena Ghosting
 ║
-║Moto hidup  : 
-║
+║Moto hidup  : Mencari cewek china
+║ mulus
 ║
 ╰ஜ۩۞ Sociality BOT۞۩ஜ══`
 
@@ -424,7 +424,7 @@ exports.soundcloud = (result) => {
 }
 
 exports.gsm = (result) => {
-    return `➸ *Model HP*: ${result.title}\n➸ *Spesifikasi*: ${result.spec}`
+    return `➸ *Model HP*: ${result.phone_name}\n➸ *Spesifikasi*: \n-Jaringan :\n-2g :\n${result.specification.network.net2g}\n-3g :\n${result.specification.network.net3g}\n-4g :\n${result.specification.network.net4g}\n-5g :\n${result.specification.network.net5g}\nKecepatan :\n${result.specification.network.speed}\n\n Di luncurkan :\n${result.specification.launch.year}\n\n Body :\nUkuran :\n${result.specification.body.dimensions}\n Berat :\n${result.specification.body.weight}\nSim :\n${result.specification.body.sim}\n\n Display :\n${result.specification.display.displaytype}\n\n platform :\n${result.specification.platform.os}\n${result.specification.platform.chipset}\n${result.specification.platform.gpu}\n`
 }
 
 exports.receipt = (result) => {
