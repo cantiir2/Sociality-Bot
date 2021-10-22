@@ -148,7 +148,7 @@ module.exports = sociality = async (sociality = new Client(), message) => {
         const url = args.length !== 0 ? args[0] : ''
         const isBadword = baddword.includes(groupId)
         const speed = require('performance-now')
-       // const person = author.replace('@c.us', '')
+        const person = author.replace('@c.us', '')
         const groupMembers = isGroupMsg ? await sociality.getGroupMembersId(groupId) : false
         /********** VALIDATOR **********/
         const isCmd = body.startsWith(prefix)
@@ -1281,7 +1281,7 @@ break
                 if (limit.isLimit(sender.id, _limit, limitCount, isPremium, isOwner)) return await sociality.reply(from, ind.limit(), id)
                 limit.addLimit(sender.id, _limit, isPremium, isOwner)
                 if (!isPremium) return await sociality.reply(from, ind.notPremium(), id)
-               /* downloader.tikNoWm(url)
+                downloader.tikNoWm(url)
                     .then(async ({result})=> {
                         await sociality.reply(from, ind.wait(), id)
                        // await sociality.sendFileFromUrl(from, result, 'tiktok.mp4', '', id)            
@@ -1291,16 +1291,17 @@ break
                     .catch(async (err) => {
                         console.log(err)
                         await sociality.reply(from, 'Error!', id)
-                    })*/
+                    })
                     
-                downloader.tiknowmv2(url)
+                /*downloader.tiknowmv2(url)
                 .then(async ({result})=> {
+                await sociality.reply(from, ind.wait(), id)
                    await sociality.sendFileFromUrl(from, result, 'tiktok.mp4', '', id)            
                 })
                 .catch(async (err) => {
                     console.log(err)
                     await sociality.reply(from, 'Error!', id)
-                })
+                })*/
             break
             case prefix+'tiktok':
                 if (!isRegistered) return await sociality.reply(from, ind.notRegistered(), id)
@@ -1726,7 +1727,7 @@ break
                 try {
                     misc.gsmarena(q)
                         .then(async ({ result }) => {
-                            await sociality.sendFileFromUrl(from, result.image, `${result.title}.jpg`, ind.gsm(result), id)
+                            await sociality.sendFileFromUrl(from, result.phone_image, `${result.title}.jpg`, ind.gsm(result), id)
                             console.log('Success sending phone info!')
                         })
                 } catch (err) {
