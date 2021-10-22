@@ -1,78 +1,61 @@
 {
-  "name": "Sociality-Bot",
+  "name": "bocchibot",
   "version": "1.0.0",
-  "description": "Sociality Bot is multifunction bot WhatsApp.",
+  "description": "BocchiBot is a multipurpose WhatsApp bot.",
   "main": "index.js",
-  "module": "main.js",
   "scripts": {
     "start": "node index.js"
   },
-  "author": "Kad.Ar_",
+  "author": "SlavyanDesu",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cantiir2/Sociality-Bot/"
+    "url": "https://github.com/SlavyanDesu/BocchiBot.git"
   },
   "bugs": {
-    "url": "https://github.com/cantiir2/Sociality-Bot/issues"
+    "url": "https://github.com/SlavyanDesu/BocchiBot/issues"
   },
-  "homepage": "https://github.com/cantiir2/Sociality-Bot/",
+  "homepage": "https://github.com/SlavyanDesu/BocchiBot",
   "license": "MIT",
   "dependencies": {
-    "@babel/runtime": "^7.14.8",
     "@justalk/pornhub-api": "^3.5.0",
     "@open-wa/wa-automate": "^4.23.3",
     "@vitalets/google-translate-api": "^7.0.0",
     "await-exec": "^0.1.2",
-    "axios": "^0.21.1",
+    "axios": "^0.23.0",
     "bent": "^7.3.12",
-    "brainly-scraper": "^1.0.3",
-    "canvacord": "^5.2.3",
-    "canvas": "^2.8.0",
-    "chalk": "^4.1.0",
-    "cheerio": "^1.0.0-rc.10",
+    "canvacord": "^5.1.0",
+    "chalk": "^4.1.2",
     "discord-canvas": "^1.4.1",
     "emoji-unicode": "^2.0.1",
-    "esm": "^3.2.25",
+    "express": "^4.17.1",
     "figlet": "^1.5.0",
     "file-type": "^16.2.0",
     "fluent-ffmpeg": "^2.1.2",
     "form-data": "^4.0.0",
-    "fs-extra": "^9.1.0",
+    "fs-extra": "^10.0.0",
     "genshin": "^1.2.4",
     "google-it": "^1.6.2",
-    "install": "^0.13.0",
     "is-porn": "^0.9.0",
     "mathjs": "^9.0.0",
     "moment-timezone": "^0.5.33",
     "ms": "^2.1.3",
-    "multer": "^1.4.2",
     "nana-api": "^1.1.4",
-    "needle": "^2.6.0",
+    "needle": "^3.0.0",
     "nekobocc": "^1.1.0",
     "nekos.life": "^2.0.7",
     "nhentai-api": "^3.0.2",
     "nhentai-js": "^4.0.0",
+    "node": "^16.11.1",
     "node-cron": "^3.0.0",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^3.0.0",
     "node-gtts": "^2.0.2",
-    "node-tesseract-ocr": "^2.0.0",
-    "npm": "^7.20.3",
-    "parse-ms": "2.1.0",
-    "parse-path": "^4.0.3",
-    "request": "^2.88.2",
-    "require": "^0.4.4",
-    "rumus-bdr": "^1.0.0",
+    "node-tesseract-ocr": "^2.2.1",
+    "npm": "^8.1.0",
+    "parse-ms": "^2.1.0",
     "sagiri": "^3.1.1",
-    "sastrawijs": "^1.0.4",
-    "sharp": "^0.29.1",
-    "uuid": "^8.3.2",
-    "video-url-link": "^0.1.5",
-    "webp-converter": "^2.3.3"
+    "video-url-link": "git+https://github.com/YogaSakti/video-url-link.git"
   },
   "devDependencies": {
-    "eslint": "^7.22.0"
-  },
-  "directories": {
-    "lib": "lib"
+    "eslint": "^8.0.0"
   }
 }
