@@ -148,7 +148,6 @@ module.exports = sociality = async (sociality = new Client(), message) => {
         const url = args.length !== 0 ? args[0] : ''
         const isBadword = baddword.includes(groupId)
         const speed = require('performance-now')
-        const person = author.replace('@c.us', '')
         const groupMembers = isGroupMsg ? await sociality.getGroupMembersId(groupId) : false
         /********** VALIDATOR **********/
         const isCmd = body.startsWith(prefix)
@@ -886,7 +885,7 @@ module.exports = sociality = async (sociality = new Client(), message) => {
                         await sociality.sendImage(from, `${sender.id}_joox.png`,``, ind.spotify(result))
                         fs.unlinkSync(`${sender.id}_joox.png`)
                         //await sociality.sendFileFromUrl(from, result[0].linkMp3, 'joox.mp3', '', id)
-                        await sociality.sendFileFromUrl(from, result.link, 'joox.mp3', `${result.title}`, id)
+                        await sociality.sendFileFromUrl(from, result.link, 'Spotify.mp3', `${result.title}`, id)
                     })
                     .catch(async (err) => {
                         console.error(err)
@@ -1077,7 +1076,7 @@ break
                 } else if (ar[0] === '6') {
                     await sociality.reply(from, `Usiaku 22 tahun. Aku sangat mencintai ${stress}, aku punya semua Figurine dan wallpapernya. Aku berdoa setiap malam dan berterima kasih atas segala hal yang telah ia berikan kepadaku. "${stress} adalah cinta" aku bilang "${stress} adalah Tujuan Hidupku". Temanku datang ke kamarku dan berkata "HALU LU ANJING !!". Aku tau dia cemburu atas kesetiaanku kepada ${stress}. Lalu kukatakan padanya "BACOT NJING !!". Temanku menampol kepalaku dan menyuruhku untuk tidur. Kepalaku sakit dan aku menangis. Aku rebahan di kasur yang dingin, lalu ada sesuatu yang hangat menyentuhku. Ternyata ${stress} datang ke dalam kamarku, Aku begitu senang bertemu ${stress}. Dia membisikan ke telingaku, "Kamu adalah impianku" Dengan tangannya dia meraih diriku. Aku melebarkan pantatku keatas demi ${stress}. Dia menusukan sesuatu kedalam Anggusku. begitu sakit, tapi kulakukan itu demi ${stress}. Aku ingin memberikan kepuasan kepada ${stress}. Dia meraum bagaikan singa, disaat dia melepaskan cintanya kedalam Anggusku. Temanku masuk kekamarku dan berkata "....... Anjing". ${stress} melihat temanku dan berkata " Semua sudah berakhir" Dengan menggunakan kemampuannya Stellar Restoration ${stress} pergi meninggalkan kamarku. "${stress} itu cinta" "${stress} itu kehidupan".`, id)
                 } else{
-                    sociality.sendText(from, 'maaf kamu yang pilih salah')
+                    await sociality.reply(from, ind.menuStress(), id)
                 }
                 break
             case prefix+'suit':
@@ -4161,33 +4160,24 @@ break
                 limit.addLimit(sender.id, _limit, isPremium, isOwner)
                 if (!isGroupMsg) return await sociality.reply(from, ind.groupOnly(), id)
                 try {
-                    if (ar[0] === 'burnpaper') {
-                        const vfburn = await axios.get(`https://videfikri.com/api/textmaker/burnpaper/?text=${args[1]}`)
-                        await sociality.sendFileFromUrl(from, vfburn.data.result.img, `${q}.jpg`, '', id)
-                    } else if (ar[0] === 'candlemug') {
-                        const vfcandlemug = await axios.get(`https://videfikri.com/api/textmaker/candlemug/?text=${args[1]}`)
-                        await sociality.sendFileFromUrl(from, vfcandlemug.data.result.img, `${q}.jpg`, '', id)
-                    } else if (ar[0] === 'lovemsg') {
-                        const vflovemsg = await axios.get(`https://videfikri.com/api/textmaker/lovemsg/?text=${args[1]}`)
-                        await sociality.sendFileFromUrl(from, vflovemsg.data.result.img, `${q}.jpg`, '', id)
-                    } else if (ar[0] === 'mugflower') {
-                        const vfmugflower = await axios.get(`https://videfikri.com/api/textmaker/mugflower/?text=${args[1]}`)
-                        await sociality.sendFileFromUrl(from, vfmugflower.data.result.img, `${q}.jpg`, '', id)
-                    } else if (ar[0] === 'narutobanner') {
-                        const vfnarutobanner = await axios.get(`https://videfikri.com/api/textmaker/narutobanner/?text=${args[1]}`)
-                        await sociality.sendFileFromUrl(from, vfnarutobanner.data.result.img, `${q}.jpg`, '', id)
-                    } else if (ar[0] === 'paperonglass') {
-                        const vfpaperonglass = await axios.get(`https://videfikri.com/api/textmaker/paperonglass/?text=${args[1]}`)
-                        await sociality.sendFileFromUrl(from, vfpaperonglass.data.result.img, `${q}.jpg`, '', id)
-                    } else if (ar[0] === 'romancetext') {
-                        const vfromancetext = await axios.get(`https://videfikri.com/api/textmaker/romancetext/?text=${args[1]}`)
-                        await sociality.sendFileFromUrl(from, vfromancetext.data.result.img, `${q}.jpg`, '', id)
-                    } else if (ar[0] === 'shadowtext') {
-                        const vfshadowtext = await axios.get(`https://videfikri.com/api/textmaker/shadowtext/?text=${args[1]}`)
-                        await sociality.sendFileFromUrl(from, vfshadowtext.data.result.img, `${q}.jpg`, '', id)
-                    } else if (ar[0] === 'tiktokeffect') {
-                        const vftiktokeffect = await axios.get(`https://videfikri.com/api/textmaker/tiktokeffect/?text=${args[1]}`)
-                        await sociality.sendFileFromUrl(from, vftiktokeffect.data.result.img, `${q}.jpg`, '', id)
+                    if (ar[0] === 'blackpink') {
+                        await sociality.sendFileFromUrl(from, `https://api.lolhuman.xyz/api/textprome/blackpink?apikey=${config.vhtear}&text=${args[1]}`, `${q}.jpg`, '', id)
+                    } else if (ar[0] === 'neon') {
+                        await sociality.sendFileFromUrl(from, `https://api.lolhuman.xyz/api/textprome/neon?apikey=${config.vhtear}&text=${args[1]}`, `${q}.jpg`, '', id)
+                    } else if (ar[0] === 'greenneon') {
+                        await sociality.sendFileFromUrl(from, `https://api.lolhuman.xyz/api/textprome/greenneon?apikey=${config.vhtear}&text=${args[1]}`, `${q}.jpg`, '', id)
+                    } else if (ar[0] === 'futureneon') {
+                        await sociality.sendFileFromUrl(from, `https://api.lolhuman.xyz/api/textprome/futureneon?apikey=${config.vhtear}&text=${args[1]}`, `${q}.jpg`, '', id)
+                    } else if (ar[0] === 'toxic') {
+                        await sociality.sendFileFromUrl(from, `https://api.lolhuman.xyz/api/textprome/toxic?apikey=${config.vhtear}&text=${args[1]}`, `${q}.jpg`, '', id)
+                    } else if (ar[0] === 'impressiveglitch') {
+                        await sociality.sendFileFromUrl(from, `https://api.lolhuman.xyz/api/textprome/impressiveglitch?apikey=${config.vhtear}&text=${args[1]}`, `${q}.jpg`, '', id)
+                    } else if (ar[0] === 'thunder') {
+                        await sociality.sendFileFromUrl(from, `https://api.lolhuman.xyz/api/textprome/thunder?apikey=${config.vhtear}&text=${args[1]}`, `${q}.jpg`, '', id)
+                    } else if (ar[0] === 'box3d') {
+                        await sociality.sendFileFromUrl(from, `https://api.lolhuman.xyz/api/textprome/box3d?apikey=${config.vhtear}&text=${args[1]}`, `${q}.jpg`, '', id)
+                    } else if (ar[0] === 'bokeh') {
+                        await sociality.sendFileFromUrl(from, `https://api.lolhuman.xyz/api/textprome/bokeh?apikey=${config.vhtear}&text=${args[1]}`, `${q}.jpg`, '', id)
                     } else {
                         await sociality.reply(from, ind.menuText(), id)
                     }
@@ -4195,7 +4185,7 @@ break
                     console.error(err)
                     await sociality.reply(from, 'Error!', id)
                 }
-            break // Makasih Free Api nya Bang VideFikri
+            break
 
             // Sticker
             case prefix+'stikernobg':
