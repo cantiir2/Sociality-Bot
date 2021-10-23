@@ -615,17 +615,35 @@ exports.menuText = () => {
 ╭ஜ۩۞ Text Maker ۞۩ஜ══
 ║
 ║ Untuk Spasi Teks menggunakan *+*
-║ contoh : ${prefix}text1 neon kael+bot
+║ contoh : ${prefix}text1 neon social+bot
 ║
-╟⊱ *${prefix}text1 burnpaper* _teks_
-╟⊱ *${prefix}text1 candlemug* _teks_
-╟⊱ *${prefix}text1 lovemsg* _teks_
-╟⊱ *${prefix}text1 mugflower* _teks_
-╟⊱ *${prefix}text1 narutobanner* _teks_
-╟⊱ *${prefix}text1 paperonglass* _teks_
-╟⊱ *${prefix}text1 romancetext* _teks_
-╟⊱ *${prefix}text1 shadowtext* _teks_
-╟⊱ *${prefix}text1 tiktokeffect* _teks_
+╟⊱ *${prefix}text1 blackpink* _teks_
+╟⊱ *${prefix}text1 neon* _teks_
+╟⊱ *${prefix}text1 greenneon* _teks_
+╟⊱ *${prefix}text1 futureneon* _teks_
+╟⊱ *${prefix}text1 toxic* _teks_
+╟⊱ *${prefix}text1 impressiveglitch* _teks_
+╟⊱ *${prefix}text1 thunder* _teks_
+╟⊱ *${prefix}text1 box3d* _teks_
+╟⊱ *${prefix}text1 bokeh* _teks_
+║
+╰ஜ۩۞ Sociality BOT۞۩ஜ══
+    `
+}
+
+exports.menuStress = () => {
+    return `
+╭ஜ۩۞ Stress menu ۞۩ஜ══
+║
+║ Untuk Spasi Teks menggunakan *+*
+║ contoh : ${prefix}1 keqing
+║
+╟⊱ *${prefix}1 * _teks_
+╟⊱ *${prefix}2 * _teks_
+╟⊱ *${prefix}3 * _teks_
+╟⊱ *${prefix}4 * _teks_
+╟⊱ *${prefix}5 * _teks_
+╟⊱ *${prefix}6 * _teks_
 ║
 ╰ஜ۩۞ Sociality BOT۞۩ஜ══
     `
@@ -1470,6 +1488,12 @@ exports.menuFun = () => {
 ║
 ║Aliases: -
 ║Usage: *${prefix}ktpmaker*
+║════════════════════════
+╟⊱33. *${prefix}stress*
+║Membuat kata stress
+║
+║Aliases: -
+║Usage: *${prefix}stress 1 Keqing*
 ╰ஜ۩۞ Sociality BOT۞۩ஜ══
     `
 }
