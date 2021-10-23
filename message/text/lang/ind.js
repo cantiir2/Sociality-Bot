@@ -614,7 +614,6 @@ exports.menuText = () => {
     return `
 ╭ஜ۩۞ Text Maker ۞۩ஜ══
 ║
-║ Untuk Spasi Teks menggunakan *+*
 ║ contoh : ${prefix}text1 neon social+bot
 ║
 ╟⊱ *${prefix}text1 blackpink* _teks_
@@ -635,15 +634,14 @@ exports.menuStress = () => {
     return `
 ╭ஜ۩۞ Stress menu ۞۩ஜ══
 ║
-║ Untuk Spasi Teks menggunakan *+*
-║ contoh : ${prefix}1 keqing
+║ contoh : ${prefix}stress 1 keqing
 ║
-╟⊱ *${prefix}1 * _teks_
-╟⊱ *${prefix}2 * _teks_
-╟⊱ *${prefix}3 * _teks_
-╟⊱ *${prefix}4 * _teks_
-╟⊱ *${prefix}5 * _teks_
-╟⊱ *${prefix}6 * _teks_
+╟⊱ *${prefix}stress 1* _teks_
+╟⊱ *${prefix}stress 2* _teks_
+╟⊱ *${prefix}stress 3* _teks_
+╟⊱ *${prefix}stress 4* _teks_
+╟⊱ *${prefix}stress 5* _teks_
+╟⊱ *${prefix}stress 6* _teks_
 ║
 ╰ஜ۩۞ Sociality BOT۞۩ஜ══
     `
