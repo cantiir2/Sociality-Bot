@@ -5986,7 +5986,7 @@ break
             break
             case prefix+'shutdown':
             case prefix+'sh':
-                if (isOwner && isOwner2) return await sociality.reply(from, ind.ownerOnly(), id)
+                if (isOwner || isOwner2) return await sociality.reply(from, ind.ownerOnly(), id)
                 await sociality.sendText(from, 'Tolong jangan bunuh saya tuan~')
                     await sleep(5000)
                     await sociality.sendText(from, 'Aaaaaaaaaaaaaaaaa')
