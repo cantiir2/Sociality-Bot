@@ -86,7 +86,7 @@ const _antipromote = JSON.parse(fs.readFileSync('./database/group/antipromote.js
 const _leveling = JSON.parse(fs.readFileSync('./database/group/leveling.json'))
 const _welcome = JSON.parse(fs.readFileSync('./database/group/welcome.json'))
 const _autosticker = JSON.parse(fs.readFileSync('./database/group/autosticker.json'))
-const _ban = JSON.parse(fs.readFileSync('./database/bot/banned.json'))
+const bennet = JSON.parse(fs.readFileSync('./database/bot/banned.json'))
 const _premium = JSON.parse(fs.readFileSync('./database/bot/premium.json'))
 const _mute = JSON.parse(fs.readFileSync('./database/bot/mute.json'))
 const _registered = JSON.parse(fs.readFileSync('./database/bot/registered.json'))
@@ -129,7 +129,7 @@ module.exports = sociality = async (sociality = new Client(), message) => {
         const chats = (type === 'chat') ? body : ((type === 'image' || type === 'video')) ? caption : ''
         const command = chats.toLowerCase().split(' ')[0] || ''
         if (multi){
-		    var prefix = /^[°•π÷×¶∆£¢€¥®™✓_=|~!?#$%^&.+-,\/\\©^]/.test(command) ? command.match(/^[°•π÷×¶∆£¢€¥®™✓_=|~!?#$%^&.+-,\/\\©^]/gi) : '#'
+		    var prefix = /^[°•π÷×¶∆£¢€¥®™✓_=|~!?#$%^&.+-,\/\\©^]/.test(command) ? command.match(/^[°•π÷×¶∆£¢€¥®™✓_=|~!?#$%^&.+-,\/\\©^]/gi) : '.'
         } else {
             if (nopref){
                 prefix = ''
@@ -152,12 +152,12 @@ module.exports = sociality = async (sociality = new Client(), message) => {
         /********** VALIDATOR **********/
         const isCmd = body.startsWith(prefix)
         const arg = body.substring(body.indexOf(' ') + 1)
+        const isBanned = bennet.includes(sender.id)
         const isBlocked = blockNumber.includes(sender.id)
         const isOwner = sender.id === ownerNumber
         const isOwner2 = sender.id === ownerNumber2
         const isGroupAdmins = groupAdmins.includes(sender.id) || false
         const isBotGroupAdmins = groupAdmins.includes(botNumber) || false
-        //const isBanned = _ban.includes(sender.id)
         const isPremium = premium.checkPremiumUser(sender.id, _premium)
         const isRegistered = register.checkRegisteredUser(sender.id, _registered)
         const isNsfw = isGroupMsg ? _nsfw.includes(groupId) : false
@@ -653,8 +653,8 @@ module.exports = sociality = async (sociality = new Client(), message) => {
         if (isCmd && isMute && !isGroupAdmins && !isOwner && !isPremium) return
         
         // Ignore banned and blocked users
-        // if (isCmd && (isBanned || isBlocked) && !isGroupMsg) return console.log(color('[BAN]', 'red'), color(time, 'yellow'), color(`${command} [${args.length}]`), 'from', color(pushname))
-        //if (isCmd && (isBanned || isBlocked) && isGroupMsg) return console.log(color('[BAN]', 'red'), color(time, 'yellow'), color(`${command} [${args.length}]`), 'from', color(pushname), 'in', color(name || formattedTitle))
+         if (isCmd && (bennet.includes(sender.id) || isBlocked) && !isGroupMsg) return console.log(color('[BAN]', 'red'), color(time, 'yellow'), color(`${command} [${args.length}]`), 'from', color(pushname))
+         if (isCmd && (bennet.includes(sender.id) || isBlocked) && isGroupMsg) return console.log(color('[BAN]', 'red'), color(time, 'yellow'), color(`${command} [${args.length}]`), 'from', color(pushname), 'in', color(name || formattedTitle))
 
         // Anti-spam
         const aantispam = [
@@ -690,7 +690,8 @@ module.exports = sociality = async (sociality = new Client(), message) => {
         const ownernnumber = '6281414252501@c.us'
 
         // Anti-spam
-        if (isCmd && !isPremium && !isOwner)msgFilter.addFilter(from)
+        if (isCmd && msgFilter.isFiltered(from) && !isGroupMsg) return console.log(color('[SPAM]', 'red'), color(time, 'yellow'), color(`${command} [${args.length}]`), 'from', color(pushname))
+        if (isCmd && msgFilter.isFiltered(from) && isGroupMsg) return console.log(color('[SPAM]', 'red'), color(time, 'yellow'), color(`${command} [${args.length}]`), 'from', color(pushname), 'in', color(name || formattedTitle))
         
        
         switch (command) {
@@ -2627,7 +2628,7 @@ break
                 }
                 const waktuup = process.uptime()
                 await sociality.reply(from, `*「 𝗦𝗧𝗔𝗧𝗨𝗦 𝗣𝗖 」*\nPenggunaan RAM: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB\nCPU: ${os.cpus()[0].model}
-                \n\n*「 𝗦𝗧𝗔𝗧𝗨𝗦 𝐓𝐄𝐑𝐃𝐀𝐅𝐓𝐀𝐑 」* :\n*${_registered.length}* User yang terdaftar\n   ├ *${blockedd.length}* User Terblokir\n   ├ *${_ban.length}* User terkena banned\n   └ *${premiup.length}* Premium User
+                \n\n*「 𝗦𝗧𝗔𝗧𝗨𝗦 𝐓𝐄𝐑𝐃𝐀𝐅𝐓𝐀𝐑 」* :\n*${_registered.length}* User yang terdaftar\n   ├ *${blockedd.length}* User Terblokir\n   ├ *${bennet.length}* User terkena banned\n   └ *${premiup.length}* Premium User
                 \n\n*「 𝗦𝗧𝗔𝗧𝗨𝗦 𝗠𝗘𝗦𝗦𝗔𝗚𝗘 」* :\n- *${loadedMsg}* Loaded Messages\n- *${chatIds.length - groups.length}* Total Chats\n    ├ *${groups.length}* Group Chats\n    └ *${chatIds.length}* Personal Chats\n- *${groups.length}* Groups Joined\n     └ *${botadmins.length}* Bot jadi admin
                 \n\n*「 𝗦𝗧𝗔𝗧𝗨𝗦 𝗗𝗘𝗩𝗜𝗖𝗘 」*\n${(`\n*Battery* : ${battery}% ${isCharging ? 'Sedang di charger ...' : 'Ga Di Cas!'}\n${Object.keys(me.phone).map(key => `${key} : ${me.phone[key]}`).join('\n')}`.slice(1, -1))}
                 \n\n*「 𝐁𝐎𝐓 𝐀𝐊𝐓𝐈𝐅 」*\n${waktutime(waktuup)}
@@ -3405,7 +3406,7 @@ break
                     const profilePic = await sociality.getProfilePicFromServer(getQuoted)
                     const username = quotedMsgObj.sender.name
                     const statuses = await sociality.getStatus(getQuoted)
-                    const benet = _ban.includes(getQuoted) ? 'Yes' : 'No'
+                    const benet = bennet.includes(getQuoted) ? 'Yes' : 'No'
                     const adm = groupAdmins.includes(getQuoted) ? 'Yes' : 'No'
                     const premi = premium.checkPremiumUser(getQuoted, _premium) ? 'Yes' : 'No'
                     const levelMe = level.getLevelingLevel(getQuoted, _level)
@@ -5844,24 +5845,24 @@ break
                     if (mentionedJidList.length !== 0) {
                         for (let benet of mentionedJidList) {
                             if (benet === botNumber) return await sociality.reply(from, ind.wrongFormat(), id)
-                            _ban.push(benet)
-                            fs.writeFileSync('./database/bot/banned.json', JSON.stringify(_ban))
+                            bennet.push(benet)
+                            fs.writeFileSync('./database/bot/banned.json', JSON.stringify(bennet))
                         }
-                        await sociality.reply(from, 'Asiik monyet satu ini gak bisa pake bot\Nuntuk cek lo gak di ban cek di *#banlist*', id)
+                        await sociality.reply(from, `Asiik monyet satu ini gak bisa pake bot\Nuntuk cek lo gak di ban cek di *${prefix}banlist`, id)
                     } else {
-                        _ban.push(args[1] + '@c.us')
-                        fs.writeFileSync('./database/bot/banned.json', JSON.stringify(_ban))
+                        bennet.push(args[1] + '@c.us')
+                        fs.writeFileSync('./database/bot/banned.json', JSON.stringify(bennet))
                         await sociality.reply(from, 'Lain kali jangan spam ya ngentot', id)
                     }
                 } else if (ar[0] === 'del') {
                     if (mentionedJidList.length !== 0) {
                         if (mentionedJidList[0] === botNumber) return await sociality.reply(from, ind.wrongFormat(), id)
-                        _ban.splice(mentionedJidList[0], 1)
-                        fs.writeFileSync('./database/bot/banned.json', JSON.stringify(_ban))
+                        bennet.splice(mentionedJidList[0], 1)
+                        fs.writeFileSync('./database/bot/banned.json', JSON.stringify(bennet))
                         await sociality.reply(from, ind.doneOwner(), id)
                     } else{
-                        _ban.splice(args[1] + '@c.us', 1)
-                        fs.writeFileSync('./database/bot/banned.json', JSON.stringify(_ban))
+                        bennet.splice(args[1] + '@c.us', 1)
+                        fs.writeFileSync('./database/bot/banned.json', JSON.stringify(bennet))
                         await sociality.reply(from, ind.doneOwner(), id)
                     }
                 } else {
@@ -6262,9 +6263,9 @@ break
             case prefix+'listbanned':
             case prefix+'banlist':
             case prefix+'listban':
-                    let bened = `This is list of banned number\nTotal : ${_ban.length}\n`
-                    for (let i of _ban) {
-                        bened += `➸ ${i.replace(/@c.us/g,'')}\n`
+                    let bened = `╭ஜ۩۞ *Monyet terkena ban* ۞۩ஜ══\n`
+                    for (let i of bennet) {
+                        bened += `╟⊱ ${i.replace(/@c.us/g,'')}\n`
                     }
                     await sociality.reply(from, bened, id)
                     break
