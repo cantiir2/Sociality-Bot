@@ -1560,15 +1560,9 @@ break
                 if (limit.isLimit(sender.id, _limit, limitCount, isPremium, isOwner)) return await sociality.reply(from, ind.limit(), id)
                 limit.addLimit(sender.id, _limit, isPremium, isOwner)
                 await sociality.reply(from, ind.wait(), id)
-                misc.ttp(q)
-                    .then(async (res) => {
-                        await sociality.sendImageAsSticker(from, res.base64)
-                        console.log('Success creating TTP!')
-                    })
-                    .catch(async (err) => {
-                        console.error(err)
-                        await sociality.reply(from, 'Error!', id)
-                    })
+                ini_txt = args.join(" ")
+                await sociality.sendFileFromUrl(`https://api.lolhuman.xyz/api/${args[1]}?apikey=${config.vhtear}&text=${ini_txt}`)
+                break
             break
             case prefix+'genshininfo': // chika chantexxzz
             case prefix+'genshin':
@@ -6213,7 +6207,7 @@ break
                 console.log('Success!')
             break
            case prefix+'block':
-                if (isOwner ===& isOwner2) return sociality.reply(from, 'Perintah ini hanya bisa di gunakan oleh Owner Sociality BOT!', id)
+                if (isOwner === isOwner2) return sociality.reply(from, 'Perintah ini hanya bisa di gunakan oleh Owner Sociality BOT!', id)
                 if(ar[0] === 'add'){
                     if (mentionedJidList.length !== 0) {
                     for (let i = 0; i < mentionedJidList.length; i++) {
